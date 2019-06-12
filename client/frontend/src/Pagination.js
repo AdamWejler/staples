@@ -1,0 +1,56 @@
+import React, { Component } from "react";
+
+class Pagination extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			page: this.props.page,
+			pagesCount: 0,
+		};
+
+		this.next = this.next.bind(this);
+		this.previous = this.previous.bind(this);
+		this.updatePage = this.updatePage.bind(this);
+	}
+
+	next() {
+		if ( this.state.page + 1 <= this.state.pagesCount ) {
+			this.setState( 
+				{page: this.state.page+1},
+				this.updatePage
+			);
+		}
+	}
+
+	previous() {
+		if( this.state.page >= 2 ) {
+			this.setState(
+				{ page: this.state.page-1 },
+				this.updatePage
+			);
+		}
+	}
+
+	updatePage() {
+		console.log(this.state.page+ " / " + this.state.pagesCount);
+		this.props.updateMethod(this.state.page);
+	}
+
+	componentDidMount() {
+		let additionalPage = (this.props.productsCount%10 > 0) ? 1 : 0;
+		let pagesCount = Math.abs(this.props.productsCount/10) + additionalPage;
+		this.setState( {pagesCount: pagesCount} );
+	}
+
+	render() {
+		return (
+			<div>
+				<button onClick={this.previous}>Previous</button>
+				<button onClick={this.next}>Next</button>
+			</div>
+		)
+	}
+}
+
+export default Pagination;

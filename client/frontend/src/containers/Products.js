@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Product from "./Product"
 
 class Products extends Component {
 
@@ -7,23 +8,19 @@ class Products extends Component {
 		this.state = {
 			products: [],
 		}
-	};
+	}
 
 	componentDidMount() {
-
 		fetch(this.props.filter)
 		.then(response => response.json())
 		.then(data => this.setState( { products: data } ))
-		
 	}
 
 	render() {
 		return (
 			<div>
 				{this.state.products.map(elem =>
-		          <li key={elem.id}>
-		            <h1>{elem.id}</h1>
-		          </li>
+		            <Product key={elem.id} id={elem.id} />
 		        )}
 			</div>
 		)
