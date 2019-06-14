@@ -7,13 +7,27 @@ class Products extends Component {
 		super(props);
 		this.state = {
 			products: [],
+			filter: this.props.filter
 		}
+
+		this.updateFilter = this.updateFilter.bind(this);
+	}
+
+	updateFilter() {
+		fetch(this.state.filter)
+		.then(response => response.json())
+		.then(data => this.setState( { products: data } ))
 	}
 
 	componentDidMount() {
-		fetch(this.props.filter)
-		.then(response => response.json())
-		.then(data => this.setState( { products: data } ))
+		this.updateFilter();
+	}
+
+	componentWillReceiveProps(newProps) {
+		const oldProps = this.props;
+		if(oldProps.filter !== newProps.filter) {
+			this.setState({ filter: newProps.filter }, () => { this.updateFilter() } );
+		}
 	}
 
 	render() {
@@ -27,6 +41,5 @@ class Products extends Component {
 	}
 
 }
-
 
 export default Products;

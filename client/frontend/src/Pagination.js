@@ -17,7 +17,7 @@ class Pagination extends Component {
 	next() {
 		if ( this.state.page + 1 <= this.state.pagesCount ) {
 			this.setState( 
-				{page: this.state.page+1},
+				{ page: this.state.page+1 },
 				this.updatePage
 			);
 		}
@@ -33,7 +33,6 @@ class Pagination extends Component {
 	}
 
 	updatePage() {
-		console.log(this.state.page+ " / " + this.state.pagesCount);
 		this.props.updateMethod(this.state.page);
 	}
 
@@ -47,6 +46,7 @@ class Pagination extends Component {
 		return (
 			<div>
 				<button onClick={this.previous}>Previous</button>
+				{this.state.page} / {this.state.pagesCount}
 				<button onClick={this.next}>Next</button>
 			</div>
 		)

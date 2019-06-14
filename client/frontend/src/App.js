@@ -26,10 +26,8 @@ class App extends Component {
 		this.setState( { 
 							page: pageNr,
 							filter: simpleFilter+pageNr
-						}, 
-						console.log(this.state.filter)
+						}
 		);
-
 	}
 
 	render () {
