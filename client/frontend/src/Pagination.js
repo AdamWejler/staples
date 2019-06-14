@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./Pagination.css"
 
 class Pagination extends Component {
 
@@ -12,6 +13,8 @@ class Pagination extends Component {
 		this.next = this.next.bind(this);
 		this.previous = this.previous.bind(this);
 		this.updatePage = this.updatePage.bind(this);
+		this.first = this.first.bind(this);
+		this.last = this.last.bind(this);
 	}
 
 	next() {
@@ -32,6 +35,14 @@ class Pagination extends Component {
 		}
 	}
 
+	first() {
+		this.setState({ page: 1 }, this.updatePage);
+	}
+
+	last() {
+		this.setState({ page: this.state.pagesCount }, this.updatePage);
+	}
+
 	updatePage() {
 		this.props.updateMethod(this.state.page);
 	}
@@ -44,10 +55,12 @@ class Pagination extends Component {
 
 	render() {
 		return (
-			<div>
-				<button onClick={this.previous}>Previous</button>
+			<div className="center">
+				<button onClick={this.first}>&lt;&lt;</button>
+				<button onClick={this.previous}>&lt;</button>
 				{this.state.page} / {this.state.pagesCount}
-				<button onClick={this.next}>Next</button>
+				<button onClick={this.next}>&gt;</button>
+				<button onClick={this.last}>&gt;&gt;</button>
 			</div>
 		)
 	}

@@ -1,0 +1,12 @@
+.row {
+	display: inline-block;
+}
+
+.vertical-center {
+	margin-left: 10px;
+	transform: translateY(-50%);
+}
+
+.horizontal-center {
+	transform: translateX(40%);
+}
