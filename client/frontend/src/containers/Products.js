@@ -34,7 +34,7 @@ class Products extends Component {
 		return (
 			<div>
 				{this.state.products.map(elem =>
-		            <Product key={elem.id} details={elem} />
+		            <Product key={elem.id} details={elem} openModal={this.props.openModal} sendToModal={this.props.sendToModal}/>
 		        )}
 			</div>
 		)

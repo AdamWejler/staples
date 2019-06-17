@@ -10,3 +10,7 @@
 .horizontal-center {
 	transform: translateX(40%);
 }
+
+.name {
+	font-size: 14pt;
+}

@@ -1,0 +1,44 @@
+.modal {
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.frame {
+  width: 800px;
+  height: 500px;
+  background-color: rgba(193, 66, 66, 0.4);
+  border-radius: 25px;
+}
+
+.rightTop {
+  text-align: right;
+}
+
+.content {
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  vertical-align: middle;
+}
+
+.nextTo {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.productDetails {
+  margin-left: 20px;
+}
+
+.description {
+  margin-top: 20px;
+}
