@@ -45,9 +45,7 @@ class Modal extends Component {
 							</div>
 						</div>
 
-						<div className="description">
-							{ this.props.product.general.description }
-						</div>
+						<div className="description" dangerouslySetInnerHTML={{ __html: this.props.product.general.description }}></div>
 
 					</div>
 				</div>

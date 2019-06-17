@@ -13,7 +13,7 @@
 
 .frame {
   width: 800px;
-  height: 500px;
+  height: auto;
   background-color: rgba(193, 66, 66, 0.4);
   border-radius: 25px;
 }
