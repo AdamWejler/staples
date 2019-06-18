@@ -46,7 +46,10 @@ class App extends Component {
 
 	runFilter(sought) {
 		fetch("http://localhost:3005/products?general.name_like="+sought).then(response => {
-			this.setState({ productsCount: response.headers.get("X-Total-Count") })
+			this.setState({ 
+				productsCount: response.headers.get("X-Total-Count"),
+				page: 1
+			})
 		})
 
 	}
@@ -58,7 +61,7 @@ class App extends Component {
 				<Searcher runFilter={this.runFilter} />
 
 				{this.state && this.state.productsCount && 
-					<Pagination page={1} productsCount={this.state.productsCount} updateMethod={this.updatePage} />
+					<Pagination page={this.state.page} productsCount={this.state.productsCount} updateMethod={this.updatePage} />
 				}
 				<Products filter={this.state.filter} openModal={this.toggleModal} sendToModal={this.sendToModal} />
 

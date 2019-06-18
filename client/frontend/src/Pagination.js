@@ -63,6 +63,9 @@ class Pagination extends Component {
 		if(oldProps.productsCount !== newProps.productsCount) {
 			this.setState({ productsCount: newProps.productsCount }, () => { this.updatePagesCount() } );
 		}
+		if(oldProps.page !== newProps.page) {
+			this.setState({ page: newProps.page });
+		}
 	}
 
 	render() {
