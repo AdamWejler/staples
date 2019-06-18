@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import Products from "./containers/Products"
 import Pagination from "./Pagination"
 import Modal from "./containers/Modal"
+import Searcher from "./containers/Searcher"
 
 const simpleFilter = "http://localhost:3005/products?_page="
 
@@ -18,6 +19,7 @@ class App extends Component {
 		this.updatePage = this.updatePage.bind(this);
 		this.toggleModal = this.toggleModal.bind(this);
 		this.sendToModal = this.sendToModal.bind(this);
+		this.runFilter = this.runFilter.bind(this);
 	}
 
 	componentDidMount() {
@@ -42,10 +44,19 @@ class App extends Component {
 		this.setState({ productDetails: details });
 	}
 
+	runFilter(sought) {
+		fetch("http://localhost:3005/products?general.name_like="+sought).then(response => {
+			this.setState({ productsCount: response.headers.get("X-Total-Count") })
+		})
+
+	}
+
 	render () {
 		return (
 			
 			<div>
+				<Searcher runFilter={this.runFilter} />
+
 				{this.state && this.state.productsCount && 
 					<Pagination page={1} productsCount={this.state.productsCount} updateMethod={this.updatePage} />
 				}

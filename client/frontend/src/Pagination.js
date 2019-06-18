@@ -15,6 +15,7 @@ class Pagination extends Component {
 		this.updatePage = this.updatePage.bind(this);
 		this.first = this.first.bind(this);
 		this.last = this.last.bind(this);
+		this.updatePagesCount = this.updatePagesCount.bind(this);
 	}
 
 	next() {
@@ -48,9 +49,20 @@ class Pagination extends Component {
 	}
 
 	componentDidMount() {
+		this.updatePagesCount();
+	}
+
+	updatePagesCount() {
 		let additionalPage = (this.props.productsCount%10 > 0) ? 1 : 0;
-		let pagesCount = Math.abs(this.props.productsCount/10) + additionalPage;
+		let pagesCount = Math.floor(this.props.productsCount/10 + additionalPage);
 		this.setState( {pagesCount: pagesCount} );
+	}
+
+	componentWillReceiveProps(newProps) {
+		const oldProps = this.props;
+		if(oldProps.productsCount !== newProps.productsCount) {
+			this.setState({ productsCount: newProps.productsCount }, () => { this.updatePagesCount() } );
+		}
 	}
 
 	render() {
