@@ -14,6 +14,7 @@ class App extends Component {
 			page: 1,
 			filter: simpleFilter+1,
 			modalActive: false,
+			sought: "",
 		};
 
 		this.updatePage = this.updatePage.bind(this);
@@ -31,7 +32,7 @@ class App extends Component {
 	updatePage(pageNr) {
 		this.setState( { 
 							page: pageNr,
-							filter: simpleFilter+pageNr
+							filter: simpleFilter+pageNr+"&general.name_like="+this.state.sought
 						}
 		);
 	}
@@ -48,8 +49,8 @@ class App extends Component {
 		fetch("http://localhost:3005/products?general.name_like="+sought).then(response => {
 			this.setState({ 
 				productsCount: response.headers.get("X-Total-Count"),
-				page: 1
-			})
+				sought: sought
+			}, () => { this.updatePage(1) })
 		})
 
 	}
